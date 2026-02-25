@@ -71,16 +71,10 @@ This boilerplate is compatible with Vercel in one step.
 
 ## Thank you
 
-This and many other projects are built by students as part of the [4Geeks Academy Bootcamp](https://4geeksacademy.co/). By [@marcogonzalo](https://github.com/marcogonzalo), [@ehiber](https://github.com/ehiber) and [other contributors](https://github.com/4GeeksAcademy/typescript-hello/graphs/contributors). Find out more about our [AI Engineering Course](https://4geeksacademy.com/us/coding-bootcamps/ai-engineering).
+This and many other projects are built by students as part of the [4Geeks Academy Bootcamp](https://4geeksacademy.co/), by [@ehiber](https://github.com/ehiber). Find out more about our [AI Engineering Course](https://4geeksacademy.com/us/coding-bootcamps/ai-engineering), [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
 
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+Thanks to:
 
-1. [Alejandro Sanchez (alesanchezr)](https://github.com/alesanchezr), contribution: (coder) 💻 (idea) 🤔, (run-tests) ⚠️, (pull-request-review) 👀 (run-tutorial) ✅ (documentation) 📖
-2. [Paolo (plucodev)](https://github.com/plucodev), contribution: (bug reports) 🐛, (coder), (translation) 🌎
-3. [Daniel Machota (d4rkm0nst3r)](https://github.com/d4rkm0nst3r), contribution: (run-tutorial) ✅, (translation) 🌍
-
-<!-- hide -->
-This and many other exercises are built by students as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sánchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-<!-- endhide -->
+1. [ehiber](https://github.com/ehiber) - template setup, documentation, and maintenance.
