@@ -1,26 +1,78 @@
 # Hello World with Typescript
 
-Starter template for Vite + TypeScript with Tailwind CSS v4 already configured.
+Spanish version of this readme is available in `README.es.md`.
 
-## Run locally
+Start coding a TypeScript/HTML/CSS website in 30 seconds by opening this template using 4Geeks' One-Click Coding or locally on your computer.
+
+## Before you begin
+
+Install the packages by typing:
 
 ```bash
 npm install
+```
+
+## How do I run my website to see live changes?
+
+Type on the command line:
+
+```bash
 npm run start
 ```
 
-## Available scripts
+Then open your local URL in the browser (usually `http://localhost:5173`).
 
-- `npm run start`: Start the Vite dev server.
-- `npm run dev`: Alias of start.
-- `npm run build`: Type-check and build for production.
-- `npm run preview`: Preview production build.
+## Where do I write my code?
 
-## Notes
+It depends on the language:
 
-- This template includes a Hello Rigo asset to verify static files and styling.
-- If you can see the Rigo card and the message, Tailwind is working.
+- `./src/main.ts` for TypeScript logic.
+- `./src/style.css` for styles (Tailwind CSS v4 is already imported).
+- `./index.html` for the HTML shell.
 
-## Contributors
+You can add more files as needed, just make sure to import them from `main.ts`.
 
-- [@ehiber](https://github.com/ehiber)
+Note: if you can see the "Hello Rigo" card and the message "If you can see this, Tailwind is working.", Tailwind is configured correctly.
+
+## Troubleshooting
+
+### I don't see my changes...
+
+Every time you change any file inside `./src`, the website refreshes automatically (hot reload).
+
+If changes still don't appear, refresh clearing cache:
+
+- Mac: `Cmd + Shift + R`
+- Windows/Linux: `Ctrl + Shift + R`
+
+## How do I include more images in my project?
+
+Add them inside `./public` and reference them in HTML using `/your-image-name.ext`.
+
+Example:
+
+```html
+<img src="/rigo-baby.jpg" alt="Rigo" />
+```
+
+## How do I include more TypeScript files?
+
+Add files into `./src` and import them from `main.ts`.
+
+Example:
+
+```ts
+import { myVar } from "./file2";
+```
+
+## How do I publish the website?
+
+This boilerplate is compatible with Vercel in one step.
+
+## Thank you
+
+This template was built as part of the 4Geeks Academy Coding Bootcamp by [@ehiber](https://github.com/ehiber) and other contributors.
+
+Find out more about our Full Stack Developer Course, Data Science Bootcamp, and CyberSecurity Bootcamp.
+
+You can find other templates and resources like this on the 4Geeks Academy GitHub page.
