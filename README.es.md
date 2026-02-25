@@ -71,8 +71,16 @@ Este boilerplate es compatible con Vercel en un solo paso.
 
 ## Gracias
 
-Esta plantilla fue construida como parte del Coding Bootcamp de 4Geeks Academy por [@ehiber](https://github.com/ehiber) y otros contribuidores.
+Este y muchos otros proyectos son construidos por estudiantes como parte del [Bootcamp de 4Geeks Academy](https://4geeksacademy.co/). Por [@marcogonzalo](https://github.com/marcogonzalo), [@ehiber](https://github.com/ehiber) y [otros contribuidores](https://github.com/4GeeksAcademy/typescript-hello/graphs/contributors). Conoce mas sobre nuestro [AI Engineering Course](https://4geeksacademy.com/us/coding-bootcamps/ai-engineering).
 
-Conoce mas sobre nuestro Full Stack Developer Course, Data Science Bootcamp y CyberSecurity Bootcamp.
+## Contribuidores
 
-Puedes encontrar mas plantillas y recursos como este en el GitHub de 4Geeks Academy.
+Gracias a estas personas maravillosas ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+1. [Alejandro Sanchez (alesanchezr)](https://github.com/alesanchezr), contribucion: (coder) 💻 (idea) 🤔, (run-tests) ⚠️, (pull-request-review) 👀 (run-tutorial) ✅ (documentation) 📖
+2. [Paolo (plucodev)](https://github.com/plucodev), contribucion: (bug reports) 🐛, (coder), (translation) 🌎
+3. [Daniel Machota (d4rkm0nst3r)](https://github.com/d4rkm0nst3r), contribucion: (run-tutorial) ✅, (translation) 🌍
+
+<!-- hide -->
+Este y muchos otros ejercicios son construidos por estudiantes como parte del [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) de 4Geeks Academy por [Alejandro Sánchez](https://twitter.com/alesanchezr) y muchos otros contribuidores. Conoce mas sobre nuestro [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), y [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
+<!-- endhide -->
