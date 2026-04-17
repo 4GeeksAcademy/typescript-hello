@@ -1,8 +1,8 @@
 # Hola Mundo con Typescript
 
-La version en ingles de este readme esta disponible en `README.md`.
+La version en ingles de este readme esta disponible en [README.md](./README.md).
 
-Empieza a programar un sitio con TypeScript/HTML/CSS en 30 segundos abriendo esta plantilla con One-Click Coding de 4Geeks o en tu computadora local.
+Empieza a programar un sitio con TypeScript/HTML/CSS en 30 segundos abriendo esta plantilla con [One-Click Coding](https://s.4geeks.com/start?repo=https://github.com/4GeeksAcademy/typescript-hello) de 4Geeks o en tu computadora local.
 
 ## Antes de empezar
 

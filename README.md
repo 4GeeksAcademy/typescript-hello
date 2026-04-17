@@ -1,8 +1,9 @@
+<!-- hide -->
 # Hello World with Typescript
 
-Spanish version of this readme is available in `README.es.md`.
-
-Start coding a TypeScript/HTML/CSS website in 30 seconds by opening this template using 4Geeks' One-Click Coding or locally on your computer.
+> [Spanish version of this readme is available](./README.es.md).
+<!-- endhide -->
+Start coding a TypeScript/HTML/CSS website in 30 seconds by opening this template using 4Geeks' [One-Click Coding](https://s.4geeks.com/start?repo=https://github.com/4GeeksAcademy/typescript-hello) or locally on your computer.
 
 ## Before you begin
 
