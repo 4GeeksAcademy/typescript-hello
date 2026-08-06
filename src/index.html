@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor de Asientos de Cine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-rose-100 via-amber-50 to-sky-100 text-slate-700 [font-family:'Quicksand',sans-serif]">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.65),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.55),transparent_30%),radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.5),transparent_35%)]"></div>
+
+    <main class="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 p-4 md:p-8">
+      <header class="rounded-3xl border border-white/70 bg-white/70 p-6 shadow-lg shadow-rose-100/60 backdrop-blur">
+        <h1 class="text-3xl font-bold text-slate-800 md:text-4xl">Gestor de Asientos del Cine</h1>
+        <p class="mt-2 text-sm text-slate-600 md:text-base">
+          Selecciona asientos, confirma tu reserva y gestiona ocupación de forma visual.
+        </p>
+      </header>
+
+      <section class="grid gap-6 lg:grid-cols-[1.7fr_1fr]">
+        <article class="rounded-3xl border border-white/70 bg-white/75 p-4 shadow-lg shadow-sky-100/60 backdrop-blur md:p-6">
+          <div class="mb-4 rounded-full bg-gradient-to-r from-slate-700 to-slate-500 p-2 text-center text-xs font-semibold tracking-[0.35em] text-white md:text-sm">
+            PANTALLA
+          </div>
+
+          <div class="overflow-auto rounded-2xl bg-rose-50/70 p-3 md:p-4">
+            <div id="seat-map" class="mx-auto grid w-max gap-2"></div>
+          </div>
+
+          <div class="mt-5 grid gap-3 text-xs font-semibold md:grid-cols-3 md:text-sm">
+            <div class="flex items-center gap-2 rounded-xl bg-emerald-100/80 p-2 text-emerald-700">
+              <span class="inline-block h-4 w-4 rounded-md bg-emerald-300"></span>
+              Libre
+            </div>
+            <div class="flex items-center gap-2 rounded-xl bg-rose-100/80 p-2 text-rose-700">
+              <span class="inline-block h-4 w-4 rounded-md bg-rose-300"></span>
+              Ocupado
+            </div>
+            <div class="flex items-center gap-2 rounded-xl bg-amber-100/90 p-2 text-amber-700">
+              <span class="inline-block h-4 w-4 rounded-md bg-amber-300"></span>
+              Seleccionado
+            </div>
+          </div>
+        </article>
+
+        <aside class="rounded-3xl border border-white/70 bg-white/75 p-4 shadow-lg shadow-indigo-100/60 backdrop-blur md:p-6">
+          <h2 class="text-xl font-bold text-slate-800">Controles</h2>
+
+          <div class="mt-4 grid gap-3">
+            <button id="confirm-btn" class="rounded-xl bg-emerald-300 px-4 py-2.5 font-semibold text-emerald-900 transition hover:bg-emerald-400">
+              Confirmar reserva
+            </button>
+            <button id="clear-selection-btn" class="rounded-xl bg-amber-200 px-4 py-2.5 font-semibold text-amber-900 transition hover:bg-amber-300">
+              Cancelar seleccionados
+            </button>
+            <button id="count-btn" class="rounded-xl bg-sky-200 px-4 py-2.5 font-semibold text-sky-900 transition hover:bg-sky-300">
+              Contar asientos
+            </button>
+            <button id="find-consecutive-btn" class="rounded-xl bg-violet-200 px-4 py-2.5 font-semibold text-violet-900 transition hover:bg-violet-300">
+              Buscar 2 consecutivos
+            </button>
+            <button id="reset-btn" class="rounded-xl bg-rose-200 px-4 py-2.5 font-semibold text-rose-900 transition hover:bg-rose-300">
+              Reiniciar sala
+            </button>
+          </div>
+
+          <div class="mt-5 rounded-2xl bg-slate-50 p-4">
+            <h3 class="font-bold text-slate-700">Cancelar una reserva puntual</h3>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <input id="cancel-row" type="number" min="1" max="8" placeholder="Fila" class="rounded-lg border border-slate-200 bg-white px-3 py-2" />
+              <input id="cancel-col" type="number" min="1" max="10" placeholder="Columna" class="rounded-lg border border-slate-200 bg-white px-3 py-2" />
+            </div>
+            <button id="cancel-seat-btn" class="mt-3 w-full rounded-xl bg-orange-200 px-4 py-2.5 font-semibold text-orange-900 transition hover:bg-orange-300">
+              Cancelar reserva del asiento
+            </button>
+          </div>
+
+          <div class="mt-4 rounded-2xl bg-indigo-50/70 p-4 text-sm text-slate-700">
+            <p id="stats">Libres: 0 | Ocupados: 0 | Seleccionados: 0</p>
+            <p id="message" class="mt-2 text-slate-600">Elige un asiento libre para comenzar.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      const FILAS = 8;
+      const COLUMNAS = 10;
+      const ESTADO = {
+        LIBRE: "free",
+        OCUPADO: "occupied",
+        SELECCIONADO: "selected",
+      };
+
+      const salaInicial = Array.from({ length: FILAS }, () => Array.from({ length: COLUMNAS }, () => ESTADO.LIBRE));
+
+      let sala = structuredClone(salaInicial);
+
+      const seatMap = document.getElementById("seat-map");
+      const statsEl = document.getElementById("stats");
+      const messageEl = document.getElementById("message");
+      const confirmBtn = document.getElementById("confirm-btn");
+      const clearSelectionBtn = document.getElementById("clear-selection-btn");
+      const countBtn = document.getElementById("count-btn");
+      const findConsecutiveBtn = document.getElementById("find-consecutive-btn");
+      const resetBtn = document.getElementById("reset-btn");
+      const cancelSeatBtn = document.getElementById("cancel-seat-btn");
+      const cancelRowInput = document.getElementById("cancel-row");
+      const cancelColInput = document.getElementById("cancel-col");
+
+      function setMessage(texto) {
+        messageEl.textContent = texto;
+      }
+
+      function contarAsientos() {
+        let libres = 0;
+        let ocupados = 0;
+        let seleccionados = 0;
+
+        for (let row = 0; row < FILAS; row++) {
+          for (let col = 0; col < COLUMNAS; col++) {
+            if (sala[row][col] === ESTADO.LIBRE) libres++;
+            if (sala[row][col] === ESTADO.OCUPADO) ocupados++;
+            if (sala[row][col] === ESTADO.SELECCIONADO) seleccionados++;
+          }
+        }
+
+        statsEl.textContent = `Libres: ${libres} | Ocupados: ${ocupados} | Seleccionados: ${seleccionados}`;
+        return { libres, ocupados, seleccionados };
+      }
+
+      function classesPorEstado(estado) {
+        if (estado === ESTADO.OCUPADO) {
+          return "bg-rose-300 text-rose-900 cursor-not-allowed";
+        }
+        if (estado === ESTADO.SELECCIONADO) {
+          return "bg-amber-300 text-amber-900 ring-2 ring-amber-500";
+        }
+        return "bg-emerald-300 text-emerald-900 hover:bg-emerald-400";
+      }
+
+      function renderSala() {
+        seatMap.style.gridTemplateColumns = `repeat(${COLUMNAS}, minmax(0, 1fr))`;
+        seatMap.innerHTML = "";
+
+        for (let row = 0; row < FILAS; row++) {
+          for (let col = 0; col < COLUMNAS; col++) {
+            const estado = sala[row][col];
+            const seat = document.createElement("button");
+            seat.type = "button";
+            seat.className = `h-9 w-9 rounded-lg text-xs font-bold transition ${classesPorEstado(estado)}`;
+            seat.dataset.row = String(row);
+            seat.dataset.col = String(col);
+            seat.textContent = `${row + 1}-${col + 1}`;
+            seat.title = `Fila ${row + 1}, Columna ${col + 1}`;
+
+            seat.addEventListener("click", () => {
+              if (estado === ESTADO.OCUPADO) {
+                setMessage("Ese asiento ya esta ocupado.");
+                return;
+              }
+
+              sala[row][col] = estado === ESTADO.LIBRE ? ESTADO.SELECCIONADO : ESTADO.LIBRE;
+              renderSala();
+              contarAsientos();
+            });
+
+            seatMap.appendChild(seat);
+          }
+        }
+      }
+
+      function confirmarReserva() {
+        let cambios = 0;
+        for (let row = 0; row < FILAS; row++) {
+          for (let col = 0; col < COLUMNAS; col++) {
+            if (sala[row][col] === ESTADO.SELECCIONADO) {
+              sala[row][col] = ESTADO.OCUPADO;
+              cambios++;
+            }
+          }
+        }
+
+        if (cambios === 0) {
+          setMessage("No hay asientos seleccionados para confirmar.");
+        } else {
+          setMessage(`Reserva confirmada para ${cambios} asiento(s).`);
+        }
+
+        renderSala();
+        contarAsientos();
+      }
+
+      function cancelarSeleccionados() {
+        let cambios = 0;
+        for (let row = 0; row < FILAS; row++) {
+          for (let col = 0; col < COLUMNAS; col++) {
+            if (sala[row][col] === ESTADO.SELECCIONADO) {
+              sala[row][col] = ESTADO.LIBRE;
+              cambios++;
+            }
+          }
+        }
+
+        setMessage(cambios > 0 ? `Se quitaron ${cambios} seleccion(es).` : "No habia asientos seleccionados.");
+        renderSala();
+        contarAsientos();
+      }
+
+      function cancelarReservaPuntual() {
+        const fila = Number(cancelRowInput.value);
+        const columna = Number(cancelColInput.value);
+
+        if (!Number.isInteger(fila) || !Number.isInteger(columna) || fila < 1 || fila > FILAS || columna < 1 || columna > COLUMNAS) {
+          setMessage("Ingresa una fila y columna validas.");
+          return;
+        }
+
+        const rowIndex = fila - 1;
+        const colIndex = columna - 1;
+
+        if (sala[rowIndex][colIndex] === ESTADO.OCUPADO) {
+          sala[rowIndex][colIndex] = ESTADO.LIBRE;
+          setMessage(`Se cancelo la reserva del asiento ${fila}-${columna}.`);
+        } else if (sala[rowIndex][colIndex] === ESTADO.SELECCIONADO) {
+          sala[rowIndex][colIndex] = ESTADO.LIBRE;
+          setMessage(`El asiento ${fila}-${columna} estaba seleccionado y se libero.`);
+        } else {
+          setMessage("Ese asiento ya estaba libre.");
+        }
+
+        renderSala();
+        contarAsientos();
+      }
+
+      function buscarConsecutivos() {
+        for (let row = 0; row < FILAS; row++) {
+          for (let col = 0; col < COLUMNAS - 1; col++) {
+            if (sala[row][col] === ESTADO.LIBRE && sala[row][col + 1] === ESTADO.LIBRE) {
+              sala[row][col] = ESTADO.SELECCIONADO;
+              sala[row][col + 1] = ESTADO.SELECCIONADO;
+              setMessage(`Encontrados 2 asientos consecutivos en fila ${row + 1}, columnas ${col + 1} y ${col + 2}.`);
+              renderSala();
+              contarAsientos();
+              return;
+            }
+          }
+        }
+
+        setMessage("No hay dos asientos libres consecutivos.");
+      }
+
+      function reiniciarSala() {
+        sala = structuredClone(salaInicial);
+        setMessage("Sala reiniciada al estado inicial.");
+        renderSala();
+        contarAsientos();
+      }
+
+      confirmBtn.addEventListener("click", confirmarReserva);
+      clearSelectionBtn.addEventListener("click", cancelarSeleccionados);
+      countBtn.addEventListener("click", contarAsientos);
+      findConsecutiveBtn.addEventListener("click", buscarConsecutivos);
+      resetBtn.addEventListener("click", reiniciarSala);
+      cancelSeatBtn.addEventListener("click", cancelarReservaPuntual);
+
+      renderSala();
+      contarAsientos();
+    </script>
+  </body>
+</html>

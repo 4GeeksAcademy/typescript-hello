@@ -1,112 +1,106 @@
-# Hello World with Typescript
+# Gestor de Asientos de Cine
 
-<!-- hide -->
-> By [@ehiber](https://github.com/ehiber) and contributors at [4Geeks Academy](https://4geeksacademy.com/)
+Proyecto desarrollado con TypeScript, HTML, CSS, Vite y Tailwind CSS para simular la gestion de una sala de cine de 8 filas por 10 columnas.
 
-[![build by developers](https://img.shields.io/badge/build_by-Developers-blue)](https://4geeks.com)
-[![twitter](https://img.shields.io/twitter/follow/4geeksacademy?style=social&logo=twitter)](https://twitter.com/4geeksacademy)
+El repositorio contiene dos implementaciones del mismo problema:
 
-*Estas instrucciones estan disponibles en [espanol](./README.es.md).*
-<!-- endhide -->
-Start coding a TypeScript/HTML/CSS website in 30 seconds by opening this template using 4Geeks' [One-Click Coding](https://s.4geeks.com/start?repo=https://github.com/4GeeksAcademy/typescript-hello) or locally on your computer.
+- una version en TypeScript orientada a consola en `src/main.ts`
+- una version visual e interactiva en `src/index.html`
 
-## Before you begin
+## Tecnologias
 
-Install the packages by typing:
+- TypeScript
+- Vite
+- Tailwind CSS
+- HTML y JavaScript del lado del navegador
+
+## Como ejecutar el proyecto
+
+Instala las dependencias:
 
 ```bash
 npm install
 ```
 
-## How do I run my website to see live changes?
-
-Type on the command line:
+Inicia el entorno de desarrollo:
 
 ```bash
 npm run start
 ```
 
-Then open your local URL in the browser (usually `http://localhost:5173`).
-
-## How do I run this in GitHub Codespaces?
-
-Run the same development server:
-
-```bash
-npm run start
-```
-
-Vite is configured to listen on `0.0.0.0`, so Codespaces can detect and forward port `5173` automatically.
-
-## How do I run only the TypeScript check?
-
-Use this command to validate only TypeScript without starting Vite:
+Valida solamente TypeScript:
 
 ```bash
 npm run typecheck
 ```
 
-## How do I run `main.ts` from the terminal?
-
-If you want to execute `./src/main.ts` directly and see `console.log` output in the terminal, run:
+Ejecuta la version de consola:
 
 ```bash
 npm run console
 ```
 
-This command is already wired to `./src/main.ts`.
+## Estructura principal
 
-## Where do I write my code?
+- `src/main.ts`: logica de la sala en TypeScript para pruebas desde consola.
+- `src/index.html`: interfaz visual para reservar, cancelar y consultar asientos.
+- `src/style.css`: importacion de Tailwind CSS.
+- `vite.config.ts`: configuracion del servidor Vite.
 
-It depends on the language:
+## Implementaciones
 
-- `./src/main.ts` for TypeScript logic.
-- `./src/style.css` for styles (Tailwind CSS v4 is already imported).
-- `./index.html` for the HTML shell.
+### 1. Crear sala
 
-You can add more files as needed, just make sure to import them from `main.ts`.
+La funcion `crearSala` genera una matriz bidimensional que representa la sala de cine. Cada posicion inicia en `0`, lo que significa que el asiento esta libre.
 
-Note: if you can see the "Hello Rigo" card and the message "If you can see this, Tailwind is working.", Tailwind is configured correctly.
+### 2. Mostrar sala
 
-## Troubleshooting
+La funcion `mostrarSala` transforma la matriz en un texto legible para consola. Agrega numeracion de filas y columnas, usa `L` para asientos libres y `X` para asientos ocupados.
 
-### I don't see my changes...
+### 3. Reservar asiento
 
-Every time you change any file inside `./src`, the website refreshes automatically (hot reload).
+La funcion `reservarAsiento` marca un asiento como ocupado cuando estaba disponible. Si el asiento ya estaba reservado, muestra un mensaje indicandolo.
 
-If changes still don't appear, refresh clearing cache:
+### 4. Contar asientos
 
-- Mac: `Cmd + Shift + R`
-- Windows/Linux: `Ctrl + Shift + R`
+La funcion `contarAsientos` recorre toda la sala y devuelve cuántos asientos estan libres y cuántos ocupados. Sirve para llevar control del estado general de la sala.
 
-## How do I include more images in my project?
+### 5. Cancelar reserva
 
-Add them inside `./public` and reference them in HTML using `/your-image-name.ext`.
+La funcion `cancelarReserva` libera un asiento previamente ocupado, cambiando su estado nuevamente a disponible.
 
-Example:
+### 6. Buscar asientos consecutivos
 
-```html
-<img src="/rigo-baby.jpg" alt="Rigo" />
-```
+La funcion `buscarAsientosConsecutivos` recorre la sala para detectar dos asientos libres uno al lado del otro. Es util cuando se necesita reservar lugares contiguos.
 
-## How do I include more TypeScript files?
+### 7. Interfaz visual de reservas
 
-Add files into `./src` and import them from `main.ts`.
+En `src/index.html` se implementa una version grafica del sistema. Cada asiento se dibuja como un boton y cambia de color segun su estado:
 
-Example:
+- libre
+- ocupado
+- seleccionado
 
-```ts
-import { myVar } from "./file2";
-```
+### 8. Confirmar reserva desde la interfaz
 
-## How do I publish the website?
+La interfaz permite seleccionar uno o varios asientos y luego confirmarlos. Los asientos seleccionados pasan a estado ocupado y el sistema muestra un mensaje con la cantidad confirmada.
 
-This boilerplate is compatible with Vercel in one step.
+### 9. Cancelar seleccionados
 
-<!-- hide -->
-## Contributors
+Existe un control para quitar todas las selecciones actuales antes de confirmar la reserva. Esto devuelve los asientos a estado libre.
 
-This template was built as part of the [4Geeks Academy Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [ehiber](https://github.com/ehiber) and contributors. Find out more about our [AI Engineering Course](https://4geeksacademy.com/us/coding-bootcamps/ai-engineering), [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
+### 10. Cancelar una reserva puntual
 
-You can find other templates and resources like this at the [school's GitHub page](https://github.com/4geeksacademy/).
-<!-- endhide -->
+La interfaz permite escribir fila y columna para liberar un asiento especifico. Tambien contempla el caso en que el asiento ya este libre o solo estuviera seleccionado.
+
+### 11. Buscar dos asientos consecutivos en pantalla
+
+Desde la interfaz se puede ejecutar una busqueda automatica de dos asientos libres consecutivos. Si se encuentran, el sistema los resalta como seleccionados.
+
+### 12. Reiniciar la sala
+
+La opcion de reinicio restaura toda la sala a su estado inicial, dejando todos los asientos libres.
+
+## Resumen
+
+Este proyecto resuelve el problema de gestion de asientos de cine en dos niveles: una logica base en TypeScript y una experiencia interactiva en navegador. Eso permite practicar estructuras de datos, recorridos de matrices, validaciones y manipulacion del DOM en un mismo ejercicio.
