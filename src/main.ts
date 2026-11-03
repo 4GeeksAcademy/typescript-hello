@@ -82,6 +82,21 @@ function displaySeats(seats: number[][]): void {
     }
 }
 
+//Find the first pair of adjacent available seats
+function findAdjacentSeats(seats: number[][]): string {
+    // Loop through each row 
+    for (let i = 0; i < seats.length; i++) {
+        // Check each seat and the seat immediately after it 
+        for (let j = 0; j < seats[i].length - 1; j++) {
+            // Check whether both seats are available
+            if (seats[i][j] === 0 && seats[i][j + 1] === 0) {
+                return `Available pair found: Row ${i + 1}, Seats ${j + 1} and ${j + 2}`;
+            }
+        }
+    }
+    return "No adjacent available seats found";
+}
+
 // Initialize the cinema
 const cinema = initializeSeats();
 console.log(reserveSeat(cinema, 1, 1));
@@ -94,3 +109,5 @@ displaySeats(cinema);
 
 // Count and display seat summary
 countSeats(cinema);
+console.log(findAdjacentSeats(cinema)); 
+
