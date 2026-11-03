@@ -133,3 +133,39 @@ displaySeats(partialCinema);
 countSeats(partialCinema);
 console.log(findAdjacentSeats(partialCinema));
 
+// Test 3: Nearly full cinema
+const nearlyFullCinema = initializeSeats();
+
+// Occupy every seat
+for (let i = 0; i < nearlyFullCinema.length; i++) {
+    for (let j = 0; j < nearlyFullCinema[i].length; j++) {
+        nearlyFullCinema[i][j] = 1;
+    }
+}
+
+// Make two scattered seats available
+nearlyFullCinema[0][0] = 0;
+nearlyFullCinema[4][4] = 0;
+
+console.log("TEST 3: NEARLY FULL CINEMA");
+displaySeats(nearlyFullCinema);
+countSeats(nearlyFullCinema);
+console.log(findAdjacentSeats(nearlyFullCinema)); 
+
+// Test 4: Completely full cinema
+const fullCinema = initializeSeats();
+
+// Occupy every seat
+for (let i = 0; i < fullCinema.length; i++) {
+    for (let j = 0; j < fullCinema[i].length; j++) {
+        fullCinema[i][j] = 1;
+    }
+}
+
+console.log("TEST 4: COMPLETELY FULL CINEMA");
+displaySeats(fullCinema);
+countSeats(fullCinema);
+console.log(findAdjacentSeats(fullCinema));
+
+// Try reserving an already occupied seat
+console.log(reserveSeat(fullCinema, 1, 1));
