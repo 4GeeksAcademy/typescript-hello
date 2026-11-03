@@ -111,3 +111,25 @@ displaySeats(cinema);
 countSeats(cinema);
 console.log(findAdjacentSeats(cinema)); 
 
+// Test 1: Empty cinema
+const emptyCinema = initializeSeats();
+
+console.log("TEST 1: EMPTY CINEMA");
+displaySeats(emptyCinema);
+countSeats(emptyCinema);
+console.log(findAdjacentSeats(emptyCinema));
+
+// Test 2: Partially occupied cinema
+const partialCinema = initializeSeats();
+
+// Reserve four different seats
+reserveSeat(partialCinema, 1, 1);
+reserveSeat(partialCinema, 2, 5);
+reserveSeat(partialCinema, 4, 7);
+reserveSeat(partialCinema, 8, 10);
+
+console.log("TEST 2: PARTIALLY OCCUPIED CINEMA");
+displaySeats(partialCinema);
+countSeats(partialCinema);
+console.log(findAdjacentSeats(partialCinema));
+
