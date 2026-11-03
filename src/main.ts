@@ -1,4 +1,4 @@
-// Create an empty cinema seating arrangement
+// Initializes an 8-row by 10-column seating matrix.
 function initializeSeats(): number[][] {
     const seats: number[][] = [];
 
@@ -19,7 +19,7 @@ function initializeSeats(): number[][] {
     return seats;
 }
 
-// Reserve a seat if it is available 
+// Reserves a seat after validating its position and availability.
 function reserveSeat(seats: number[][], row: number, column: number): string { 
     // Convert customer numbers to array indexes
     const rowIndex = row - 1; 
@@ -40,7 +40,7 @@ function reserveSeat(seats: number[][], row: number, column: number): string {
     return `Reservation confirmed: Row ${row}, Seat ${column}.`; 
 }
 
-// Count occupied and available seats
+// Counts occupied and available seats.
 function countSeats(seats: number[][]): void {
     let occupied = 0; 
     let available = 0; 
@@ -60,7 +60,7 @@ function countSeats(seats: number[][]): void {
     console.log("Total seats:", occupied + available); 
 }
 
-// Display the cinema seating arrangement
+// Displays the seating arrangement using X and L.
 function displaySeats(seats: number[][]): void {
     // Display column numbers
     console.log("  1 2 3 4 5 6 7 8 9 10"); 
@@ -82,7 +82,7 @@ function displaySeats(seats: number[][]): void {
     }
 }
 
-//Find the first pair of adjacent available seats
+// Finds the first pair of horizontally adjacent available seats.
 function findAdjacentSeats(seats: number[][]): string {
     // Loop through each row 
     for (let i = 0; i < seats.length; i++) {
